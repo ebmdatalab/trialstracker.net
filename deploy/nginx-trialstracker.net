@@ -1,0 +1,15 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name trialstracker.net;
+
+    resolver 8.8.8.8 8.8.4.4 valid=300s;
+    resolver_timeout 5s;
+
+    client_max_body_size 200M;
+
+    location / {
+        alias   /var/www/trialstracker.net/;
+        expires max;
+    }
+}
