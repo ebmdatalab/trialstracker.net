@@ -1,15 +1,19 @@
 server {
     listen 80;
     listen [::]:80;
-    server_name trialstracker.net;
+    server_name trialstracker.net www.trialstracker.net;
 
     resolver 8.8.8.8 8.8.4.4 valid=300s;
     resolver_timeout 5s;
 
     client_max_body_size 200M;
-
     location / {
-        alias   /var/www/trialstracker.net/;
-        expires max;
-    }
+       access_log /var/log/nginx/trialstracker.access.log;
+       error_log /var/log/nginx/trialstracker.error.log;
+       gzip on;
+       client_max_body_size 200M;
+       root   /var/www/trialstracker.net/trialstracker.net/;
+       expires max;
+       index  index.html;
+     }
 }
